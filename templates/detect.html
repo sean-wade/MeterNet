@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>亿嘉和科技—MeterNet</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+
+<div class = "container">
+    <div class = "starter-template">
+        <h1>MeterNet</h1>
+        <p class = "lead"> 上传并检测图片 </p>
+        <p> MeterNet detection | Powered by 亿嘉和 </p>
+        <p> Image size limit: 20 MB </p>
+        <p> By 张昊 - 2020.04 </p>
+    </div>
+</div>
+
+<header class="navbar">
+    <form action="/detect" method="post" enctype="multipart/form-data" >
+        <div align="center">
+            <label class="btn btn-default btn-file">
+                浏览图片 <input type="file" name="image" style="display: none;">
+            </label>
+            <input type="submit" value="上传 && 检测" class="btn btn-primary">
+        </div>
+    </form>
+</header>
+
+
+<header class="navbar">
+    <form action="/do_sign_up" method="post" enctype="multipart/form-data" >
+        <div align="center">
+            <label class="btn btn-default btn-file">
+                浏览图片 <input type="file" name="image" style="display: none;">
+            </label>
+            <input type="text" class="txt_input" name="name" style="margin-top:15px;"/>
+            <input type="submit" value="Sign Up" class="btn btn-primary">
+        </div>
+    </form>
+</header>
+
+
+<header class="navbar">
+    <form action="/delete_row" method="post" enctype="multipart/form-data" >
+        <div align="center">
+            <input type="text" class="txt_input" name="name" style="margin-top:15px;"/>
+            <input type="submit" value="Delete" class="btn btn-primary">
+        </div>
+    </form>
+</header>
+
+
+<div class="text-center">
+    {% if init %}
+        {% if meterDetected %}
+            <div class="alert alert-success" style="margin-top:18px;">
+                Yes!     <strong> {{ meter_name }} </strong>  !!!
+            </div>
+            {% if image_to_show %}
+                <div>
+                    <img src="{{ image_to_show }}">
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="alert alert-danger" style="margin-top:18px;">
+                <strong>No! {{ meter_name }} </strong> 
+            </div>
+            {% if image_to_show %}
+                <div>
+                    <img src="{{ image_to_show }}">
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+</div>
+
+</body>
+</html>
